@@ -24,13 +24,18 @@ def main():
 
 def run(logger):
     try:
-        os.mkdir(TEMP_DIR)
+        # os.mkdir(TEMP_DIR)
 
-        logger.info("Downloading latest archived CNES dataset from FTP server...")
-        cnes_zip_file, version = download_latest_cnes_dataset(TEMP_DIR)
+        # logger.info("Downloading latest archived CNES dataset from FTP server...")
+        # cnes_zip_file, version = download_latest_cnes_dataset(TEMP_DIR)
 
-        logger.info("Extracting archived CNES dataset to {}...".format(TEMP_DIR + EXTRACTION_DIR))
-        unzip(cnes_zip_file, TEMP_DIR + EXTRACTION_DIR)
+        # logger.info(
+        #    "Extracting archived CNES dataset to {}...".format(
+        #        TEMP_DIR + EXTRACTION_DIR
+        #    )
+        # )
+        # unzip(cnes_zip_file, TEMP_DIR + EXTRACTION_DIR)
+        version = "202203"
 
         logger.info("Applying transformations...")
         df = get_transformed_df(TEMP_DIR + EXTRACTION_DIR, version)
@@ -39,7 +44,7 @@ def run(logger):
         df.to_csv(OUTPUT_FILE_NAME + ".csv", index=False)
 
         logger.info("Cleaning temp files and directories...")
-        shutil.rmtree(TEMP_DIR)
+        # shutil.rmtree(TEMP_DIR)
     except Exception as e:
         return e
 
