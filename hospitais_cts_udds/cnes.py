@@ -2,13 +2,15 @@ import os
 import shutil
 
 from extract.ftp import download_latest_cnes_dataset
-from transform.cnes import get_transformed_df
+from transform.hospitais_cts import get_transformed_df
+from transform.municipios import get_transformed_city
+from transform.etnias import get_transformed_etnia
+from transform.unidades_de_dialise import get_transformed_udd
 from utils.logger import Logger
 from utils.unzip import unzip
 
 EXTRACTION_DIR = "extracted"
 TEMP_DIR = "temp/"
-OUTPUT_FILE_NAME = "cnes-hospitais"
 
 
 def main():
@@ -38,10 +40,23 @@ def run(logger):
         version = "202304"
 
         logger.info("Applying transformations...")
-        df = get_transformed_df(TEMP_DIR + EXTRACTION_DIR, version)
+        PARAM = TEMP_DIR + EXTRACTION_DIR
+        df = get_transformed_df(PARAM, version)
+        df_city = get_transformed_city(PARAM, version)
+        df_etnia = get_transformed_etnia(PARAM, version)
+        df_udd = get_transformed_udd(PARAM, version)
 
-        logger.info("Generating {}.csv...".format(OUTPUT_FILE_NAME))
-        df.to_csv(OUTPUT_FILE_NAME + ".csv", index=False)
+        logger.info("Generating {}.csv...".format("etnias"))
+        df_etnia.to_csv("etnias" + ".csv", index=False)
+
+        logger.info("Generating {}.csv...".format("municipios"))
+        df_city.to_csv("municipios" + ".csv", index=False)
+
+        logger.info("Generating {}.csv...".format("hospitais"))
+        df.to_csv("hospitais" + ".csv", index=False)
+
+        logger.info("Generating {}.csv...".format("unidades de dialise"))
+        df_udd.to_csv("udd" + ".csv", index=False)
 
         logger.info("Cleaning temp files and directories...")
         # shutil.rmtree(TEMP_DIR)

@@ -115,6 +115,13 @@ cython_debug/
 # Temp files
 /temp/
 cnes-hospitais.csv
+/hospitais_cts_udds/temp/
+/hospitais_cts_udds/hospitais.csv
+/hospitais_cts_udds/etnias.csv
+/hospitais_cts_udds/municipios.csv
+/hospitais_cts_udds/udd.csv
 
 # OSX
 .DS_Store
+
+
