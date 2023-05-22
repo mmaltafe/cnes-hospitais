@@ -26,18 +26,18 @@ def main():
 
 def run(logger):
     try:
-        # os.mkdir(TEMP_DIR)
+        os.mkdir(TEMP_DIR)
 
-        # logger.info("Downloading latest archived CNES dataset from FTP server...")
-        # cnes_zip_file, version = download_latest_cnes_dataset(TEMP_DIR)
+        logger.info("Downloading latest archived CNES dataset from FTP server...")
+        cnes_zip_file, version = download_latest_cnes_dataset(TEMP_DIR)
 
-        # logger.info(
-        #     "Extracting archived CNES dataset to {}...".format(
-        #         TEMP_DIR + EXTRACTION_DIR
-        #     )
-        # )
-        # unzip(cnes_zip_file, TEMP_DIR + EXTRACTION_DIR)
-        version = "202304"
+        logger.info(
+            "Extracting archived CNES dataset to {}...".format(
+                TEMP_DIR + EXTRACTION_DIR
+            )
+        )
+        unzip(cnes_zip_file, TEMP_DIR + EXTRACTION_DIR)
+        version = "202304" # parece que muda todo mês
 
         logger.info("Applying transformations...")
         PARAM = TEMP_DIR + EXTRACTION_DIR
