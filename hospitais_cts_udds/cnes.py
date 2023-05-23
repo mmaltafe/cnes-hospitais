@@ -12,6 +12,8 @@ from utils.unzip import unzip
 EXTRACTION_DIR = "extracted"
 TEMP_DIR = "temp/"
 
+INFO = "Generating {}.csv..."
+PARAM = TEMP_DIR + EXTRACTION_DIR
 
 def main():
     logger = Logger()
@@ -40,22 +42,22 @@ def run(logger):
         version = "202304" # parece que muda todo mês
 
         logger.info("Applying transformations...")
-        PARAM = TEMP_DIR + EXTRACTION_DIR
+
         df = get_transformed_df(PARAM, version)
         df_city = get_transformed_city(PARAM, version)
         df_etnia = get_transformed_etnia(PARAM, version)
         df_udd = get_transformed_udd(PARAM, version)
 
-        logger.info("Generating {}.csv...".format("etnias"))
+        logger.info(INFO.format("etnias"))
         df_etnia.to_csv("etnias" + ".csv", index=False)
 
-        logger.info("Generating {}.csv...".format("municipios"))
+        logger.info(INFO.format("municipios"))
         df_city.to_csv("municipios" + ".csv", index=False)
 
-        logger.info("Generating {}.csv...".format("hospitais"))
+        logger.info(INFO.format("hospitais"))
         df.to_csv("hospitais" + ".csv", index=False)
 
-        logger.info("Generating {}.csv...".format("unidades de dialise"))
+        logger.info(INFO.format("unidades de dialise"))
         df_udd.to_csv("udd" + ".csv", index=False)
 
         logger.info("Cleaning temp files and directories...")
