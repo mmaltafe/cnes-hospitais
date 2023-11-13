@@ -30,12 +30,12 @@ def run(logger):
         # cnes_zip_file, version = download_latest_cnes_dataset(TEMP_DIR)
 
         # logger.info(
-        #    "Extracting archived CNES dataset to {}...".format(
-        #        TEMP_DIR + EXTRACTION_DIR
-        #    )
+        #     "Extracting archived CNES dataset to {}...".format(
+        #         TEMP_DIR + EXTRACTION_DIR
+        #     )
         # )
         # unzip(cnes_zip_file, TEMP_DIR + EXTRACTION_DIR)
-        version = "202203"
+        version = "202304"
 
         logger.info("Applying transformations...")
         df = get_transformed_df(TEMP_DIR + EXTRACTION_DIR, version)
